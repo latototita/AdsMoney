@@ -1,0 +1,312 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <!-- slider section -->
+    <section class=" slider_section position-relative">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="slider_item-box">
+              <div class="slider_item-container">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="slider_item-detail">
+                        <div>
+                          <h1>
+                            Make Money<br />
+                            Watching and Clicking Ads
+                          </h1>
+                          <p>
+                                For Every 1100 ads you click.We make $5.You take $3 from it.Withdrawals at Beginning of Every months,1<sup>st</sup>-16<sup>th</sup>(When the ads Company Also Pays Us) of Every Month.Work Hard, We make money together.Minimum Withdrawal is $10.
+                            We deal with Uganda,Kenya,Tanzania,Burundi and Rwanda.
+                          </p>
+                          <div class="d-flex">
+                            <form action="/" method="POST">
+                              {% csrf_token %}
+                              <input  value="Click Ads" class="text-uppercase custom_orange-btn mr-3" type="submit"  onclick="yourlink()">
+                            </form>
+                            <a href="" class="text-uppercase custom_dark-btn" style="background-color: rgb(11, 2, 112);">
+                              Website Ads
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="slider_img-box">
+                        <div>
+                          <img src="{% static 'images/logo1.png' %}" alt="" class="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="slider_item-box">
+              <div class="slider_item-container">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="slider_item-detail">
+                        <div>
+                          <h1>
+                            We Pay Monthly
+                          </h1>
+                          <p>
+                              We market for Bigger Companies That Pay Us Monthly. For Accumulated clicks, 
+                              views and impression, So after we collect our payements, We make Telegram and 
+                              WhatsApp Grooup Annoucements for Our Earners like You to Make Withdraw Request and 
+                              we pay, because we need YOU.
+                              <br /><br /><br />
+                              Trust Us, and we will Pay, This could Be a full time Job. To Earn For You. 
+                              No Scum, No Investment.Just Work and Get Paid.
+                          </p>
+                          <div class="d-flex">
+                            <form action="/" method="POST">
+                              {% csrf_token %}
+                              <input  value="Click Adsse" class="text-uppercase custom_orange-btn mr-3" type="submit"  onclick="yourlink()">
+                            </form>
+                            <a href="" class="text-uppercase custom_dark-btn" style="background-color: rgb(11, 2, 112);">
+                             Website Ads
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="slider_img-box">
+                        <div>
+                          <img src="{% static 'images/logo1.png' %}" alt="" class="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="slider_item-box">
+              <div class="slider_item-container">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="slider_item-detail">
+                        <div>
+                          <h1>
+                          Bro 4 Bro<br />
+                            Benefits for Our Earners
+                          </h1>
+                          <p>
+                            B4B program has been also started to ensure that all Our Earners, Enjoy Free Lucrative Services,Entertainment,Shopping, Selling, Schoolarships, Jobs etc.
+                            Bro for Bro program, Just for You, Scroll to bottom to Chcek it Out.
+                          </p>
+                          <div class="d-flex">
+                            <form action="/" method="POST">
+                              {% csrf_token %}
+                              <input  value="Click Ads" class="text-uppercase custom_orange-btn mr-3" type="submit"  onclick="yourlink()">
+                            </form>
+                            <a href="" class="text-uppercase custom_dark-btn" style="background-color: rgb(11, 2, 112);">
+                              Website Ads
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="slider_img-box">
+                        <div>
+                          <img src="{% static 'images/logo1.png' %}" alt="" class="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="custom_carousel-control">
+          <a style="background-image: url('static/images/prev.png');" class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="sr-only" >Previous</span>
+          </a>
+          <a style="background-image: url('static/images/next.png');" class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="sr-only" >Next</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- end slider section -->
+  </div>
+
+  <!-- service section -->
+
+  <section class="service_section layout_padding ">
+    <div class="container">
+      <h2 class="custom_heading">Our Services</h2>
+      <p class="custom_heading-text">
+        The following Are what you Can Use to Make Money Here.
+      </p>
+      <div class=" layout_padding2">
+        <div class="card-deck">
+          <div class="card">
+            <img class="card-img-top" src="{% static 'images/card-item-1.png' %}" alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">View ads</h5>
+              <p class="card-text">
+                Click the button below to View the Ads.
+                <br />
+                You dont have to Watch the Vide ads Fully, <u>Open, then moment it starts, Close it.</u>
+                <br />
+                Click the pop Ups, to <u>Open then  Close it.</u>
+                <br />
+                Those Who Have <u>VPN can switch it on and off.</u>
+              </p>
+              <br>
+              <br>
+              <div class="d-flex justify-content-center">
+                <form action="/" method="POST">
+                  {% csrf_token %}
+                  <input  value="Click Ads" class="text-uppercase custom_orange-btn mr-3" type="submit"  onclick="yourlink()">
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{% static 'images/card-item-2.png' %}" alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">We will Pay.</h5>
+              <p class="card-text">
+                Only Trust that. We need You.For Us to make money, We need you to click the Ads.See it like this, If we dont Pay, You Stop Clicking,We stop making money,Which is not Good, So be sure that we will pay. We Survive Together. Also Consider is Making money at home, Use 1GB(Max) to Make $3(UGX 15000). Or Use WIFI. 
+              </p>
+              <div class="d-flex justify-content-center">
+                <a href="" class="custom_dark-btn" style="background-color: rgb(11, 2, 112);">
+                  Website Ads
+                </a>
+              </div>
+            </div> 
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{% static 'images/card-item-3.png' %}" alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Our Withdraws</h5>
+              <p class="card-text">
+                Our withdawals is manual, Since we also wait to be paid by the marketing  Companies.Please Understand, Also Ugandans receive the money in Airtel or MTN.Others use USDT. Worldwide.Withdrawals at Beginning of Every months,1<sup>st</sup>-16<sup>th</sup>(When the ads Company Also Pays Us) of Every Month.
+              </p>
+              <div class="d-flex justify-content-center">
+                <a href="" class="custom_dark-btn">
+                  Withdraw
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <p class="card-text">Make 20 Clicks Refering People        :
+          <a href="" class="custom_dark-btn" style="background-color: rgb(3, 104, 17);">
+          Read More
+        </a></p>
+      
+      </div>
+    </div>
+  </section>
+  <section class="fruit_section layout_padding-top">
+    <div class="container">
+      <h2 class="custom_heading"><span style="color: rgb(153, 9, 9);"><u>Bro 4 Bro</u></span> Services</h2>
+      <p class="custom_heading-text">
+        We Offer a rang of Services. Just for You. Below are the Services that Comw together With AdsMoney.
+      </p>
+      <div class="row layout_padding2 ">
+        <div class="col-md-8">
+          <div class="fruit_detail-box">
+            <h3 style="color: rgb(153, 9, 9);">
+              Pearl-Mart Online Buying and Selling
+            </h3>
+            <p class="mt-4 mb-5">
+              Dear AdsMoney Earners, lets be shopping and selling only on Pearl-Mart,This is One of Our <span style="color: rgb(153, 9, 9);"><u> <a href="https:pearlmart.ml">Bro 4 Bro</a></u></span> Services that we bring for you.
+              We are all about Business For Us and For You.
+            </p>
+            <div>
+              <a href="https:pearlmart.ml" class="custom_dark-btn" style="background-color: rgb(153, 9, 9);">
+                Visit Pearl-Mart
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <div class="fruit_img-box d-flex justify-content-center align-items-center">
+            <img src="{% static 'images/cart.png' %}" alt="" class="" width="250px" />
+          </div>
+        </div>
+      </div>
+      <div class="row layout_padding2">
+        <div class="col-md-8">
+          <div class="fruit_detail-box">
+            <h3 style="color: rgb(1, 96, 20);">
+              Peermax Schoolarships
+            </h3>
+            <p class="mt-4 mb-5">
+              A large collection of whole wide, nation base, sports related, religious related etc Scholars are brought to gether here Just for You.
+              We also Support Your acedemic endeavors, <span style="color: rgb(1, 96, 20);"><u><a href="https://peermax.xyz">Bro 4 Bro</a></u></span> Services, One bro For  Each Other, That's The Goal. Wish you luck in your Schoolarship Applications. 
+            </p>
+            <div>
+              <a href="https://peermax.xyz" class="custom_dark-btn" style="background-color: rgb(1, 96, 20);">
+                Try Applying
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <div class="fruit_img-box d-flex justify-content-center ">
+            <img src="{% static 'images/scholarship.png' %}" alt="" class="" width="300px" />
+          </div>
+        </div>
+      </div>
+      <div class="row layout_padding2-top layout_padding-bottom">
+        <div class="col-md-8">
+          <div class="fruit_detail-box">
+            <h3 style="color: rgb(0, 105, 99);">
+              Pearl Youtube Video Downloader
+            </h3>
+            <p class="mt-4 mb-5">
+              Pearl YTD, is the next generation youtube video/music/audio downloader. Use this to gety any
+               video quality that you want , 140p,240p,360p,720p,1080p etc...THis is one of  <span style="color: rgb(0, 105, 99);"><u><a href="https://pearlytd.herokuapp.com">Bro 4 Bro</a></u></span> Services,, Just for You. Its always Business, Is it Not.
+            </p>
+            <div>
+              <a href="https://pearlytd.herokuapp.com" class="custom_dark-btn" style="background-color: rgb(0, 105, 99);">
+                Buy Now
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <div class="fruit_img-box d-flex justify-content-center align-items-center">
+            <img src="{% static 'images/tube.png' %}" alt="" class="" width="350px" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+  function yourlink() {
+  var locs = {{ List|safe }}
+  // 1. Random shuffle items
+  // 2. Get first item
+  var loc = [Math.floor(Math.random()*locs.length)]//locs[0]
+  var loc=locs[loc]
+  window.open(loc)
+}
+
+
+
+</script>
+  <!-- end service section -->
+
+  {% endblock %}

@@ -1,0 +1,11 @@
+gunicorn
+django_heroku
+whitenoise
+python-dotenv==0.15.0
+gunicorn
+Django==3.2
+dj-database-url
+psycopg2
+django-crispy-forms==1.14.0
+django-multiselectfield==0.1.12
+
