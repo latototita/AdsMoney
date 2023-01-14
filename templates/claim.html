@@ -1,0 +1,395 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block body %}
+
+  <!-- contact section -->
+  <section class="contact_section layout_padding " style=" background-image: url('static/images/logo1.png');">
+    <div class="container">
+      <h2 class="font-weight-bold">
+        {{ header }}
+      </h2>
+      <div class="row">
+        <div class="col-md-8 mr-auto">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Date Of Joining</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for i in clicks %} 
+                  <tr>
+                    <td class="font-weight-bold">
+                      {{ i.person }}
+                    </td>
+                    <td class="text-muted">
+                        {{i.date_paid}}
+                    </td>
+                    <td>
+                        {{i.amount}}
+                    </td>
+                    <td>
+                        {% if i.paid==True %}
+                        <a href=""><label class="badge badge-success badge-pill">Paid</label></a>
+                        {% else %}
+                        <a href=""><label class="badge badge-danger badge-pill">Claim</label></a>
+                        {% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+
+  <section class="info_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="social_container">
+            <h5>
+              Follow Us
+            </h5>
+            <div class="social-box">
+              <a href="">
+                <img src="{% static 'images/fb.png' %}" alt="">
+              </a>
+
+              <a href="">
+                <img src="{% static 'images/twitter.png' %}" alt="">
+              </a>
+              <a href="">
+                <img src="{% static 'images/linkedin.png' %}" alt="">
+              </a>
+              <a href="">
+                <img src="{% static 'images/instagram.png' %}" alt="">
+              </a>
+            </div>
+          </div>
+          <div class="subscribe_container">
+            <h5>
+              Subscribe Now
+            </h5>
+            <div class="form_container">
+              <form action="">
+                <input type="email">
+                <button type="submit">
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <style>
+
+.table, .jsgrid .jsgrid-table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+}
+
+.table th, .jsgrid .jsgrid-table th,
+.table td, .jsgrid .jsgrid-table td {
+  padding: 0.9375rem;
+  vertical-align: top;
+  border-top: 1px solid #e0e0ef;
+}
+
+.table thead th, .jsgrid .jsgrid-table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #e0e0ef;
+}
+
+.table tbody + tbody, .jsgrid .jsgrid-table tbody + tbody {
+  border-top: 2px solid #e0e0ef;
+}
+
+.table .table, .jsgrid .jsgrid-table .table, .table .jsgrid .jsgrid-table, .jsgrid .table .jsgrid-table, .jsgrid .jsgrid-table .jsgrid-table {
+  background-color: #fff;
+}
+
+.table-sm th,
+.table-sm td {
+  padding: 0.3rem;
+}
+
+.table-bordered {
+  border: 1px solid #e0e0ef;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #e0e0ef;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+  border-bottom-width: 2px;
+}
+
+.table-borderless th,
+.table-borderless td,
+.table-borderless thead th,
+.table-borderless tbody + tbody {
+  border: 0;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #ebf4fa;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #ebf4fa;
+}
+
+.table-primary,
+.table-primary > th,
+.table-primary > td {
+  background-color: #c8c4d7;
+}
+
+.table-hover .table-primary:hover {
+  background-color: #bab5cd;
+}
+
+.table-hover .table-primary:hover > td,
+.table-hover .table-primary:hover > th {
+  background-color: #bab5cd;
+}
+
+.table-secondary,
+.table-secondary > th,
+.table-secondary > td {
+  background-color: #f6f6f6;
+}
+
+.table-hover .table-secondary:hover {
+  background-color: #e9e9e9;
+}
+
+.table-hover .table-secondary:hover > td,
+.table-hover .table-secondary:hover > th {
+  background-color: #e9e9e9;
+}
+
+.table-success,
+.table-success > th,
+.table-success > td {
+  background-color: #b9ebd6;
+}
+
+.table-hover .table-success:hover {
+  background-color: #a5e5ca;
+}
+
+.table-hover .table-success:hover > td,
+.table-hover .table-success:hover > th {
+  background-color: #a5e5ca;
+}
+
+.table-info,
+.table-info > th,
+.table-info > td {
+  background-color: #bbe1fd;
+}
+
+.table-hover .table-info:hover {
+  background-color: #a2d6fc;
+}
+
+.table-hover .table-info:hover > td,
+.table-hover .table-info:hover > th {
+  background-color: #a2d6fc;
+}
+
+.table-warning,
+.table-warning > th,
+.table-warning > td {
+  background-color: #fce6c1;
+}
+
+.table-hover .table-warning:hover {
+  background-color: #fbdca9;
+}
+
+.table-hover .table-warning:hover > td,
+.table-hover .table-warning:hover > th {
+  background-color: #fbdca9;
+}
+
+.table-danger,
+.table-danger > th,
+.table-danger > td {
+  background-color: #ffd2d6;
+}
+
+.table-hover .table-danger:hover {
+  background-color: #ffb9bf;
+}
+
+.table-hover .table-danger:hover > td,
+.table-hover .table-danger:hover > th {
+  background-color: #ffb9bf;
+}
+
+.table-light,
+.table-light > th,
+.table-light > td {
+  background-color: #f9f9fb;
+}
+
+.table-hover .table-light:hover {
+  background-color: #eaeaf1;
+}
+
+.table-hover .table-light:hover > td,
+.table-hover .table-light:hover > th {
+  background-color: #eaeaf1;
+}
+
+.table-dark,
+.table-dark > th,
+.table-dark > td {
+  background-color: #c8c9ce;
+}
+
+.table-hover .table-dark:hover {
+  background-color: #bbbcc2;
+}
+
+.table-hover .table-dark:hover > td,
+.table-hover .table-dark:hover > th {
+  background-color: #bbbcc2;
+}
+
+.table-active,
+.table-active > th,
+.table-active > td {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-hover .table-active:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-hover .table-active:hover > td,
+.table-hover .table-active:hover > th {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table .thead-dark th, .jsgrid .jsgrid-table .thead-dark th {
+  color: #fff;
+  background-color: #212529;
+  border-color: #32383e;
+}
+
+.table .thead-light th, .jsgrid .jsgrid-table .thead-light th {
+  color: #495057;
+  background-color: #e9ecef;
+  border-color: #e0e0ef;
+}
+
+.table-dark {
+  color: #fff;
+  background-color: #212529;
+}
+
+.table-dark th,
+.table-dark td,
+.table-dark thead th {
+  border-color: #32383e;
+}
+
+.table-dark.table-bordered {
+  border: 0;
+}
+
+.table-dark.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-dark.table-hover tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.075);
+}
+
+@media (max-width: 575.98px) {
+  .table-responsive-sm {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  .table-responsive-sm > .table-bordered {
+    border: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .table-responsive-md {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  .table-responsive-md > .table-bordered {
+    border: 0;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .table-responsive-lg {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  .table-responsive-lg > .table-bordered {
+    border: 0;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .table-responsive-xl {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  .table-responsive-xl > .table-bordered {
+    border: 0;
+  }
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.table-responsive > .table-bordered {
+  border: 0;
+}
+
+
+  </style>
+
+
+
+  {% endblock %}
