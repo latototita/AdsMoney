@@ -142,10 +142,10 @@ def signup(response):
                     f'{username} Just Joined Using You as a Referral. \n Remember to claim your money. \n And refer more.',
                     settings.EMAIL_HOST_USER,
                     [f'{referral_code.email}'],
-                    fail_silently = True,
+                    fail_silently = False,
                     )
                 referreds=Referred(personwhorefferred=referral_code,personrefferred=username)
-                referralbonus=ReferralBonu(person=referral_code,amount=10)
+                referralbonus=ReferralBonu(person=referral_code,amount=30)
                 referreds.save()
                 referralbonus.save()
             form.save()
@@ -163,3 +163,15 @@ def Logout(request):
     request.session['click'] =click
     messages.success(request, 'You have Signed Out Successfully')
     return redirect('index')
+@login_required(login_url='login')
+def claim(request):
+    claim=request.POST.get('claim')
+    click = request.session.get('click')
+    clicks=ReferralBonu.objects.filter(person=request.user)
+    if request.method=="POST":
+        click=int(claim)+int(click)
+        request.session['click'] =click
+        messages.success(request, 'You have Signed Out Successfully')
+        return redirect('claim')
+    context={'click':click,'clicks':clicks,}
+    return render(request,'claim.html',context)

@@ -10,5 +10,6 @@ urlpatterns = [
     path('signup', signup, name='signup'),
     path('login',signin, name='login'),
     path('logout/', Logout , name='logout'),
+    path('claim', claim , name='claim'),
 
 ]
