@@ -51,8 +51,10 @@ def index(request):
     else:
         pass
     WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
-    WebAdsContainers=WebAdsContainers[2]
-
+    try:
+        WebAdsContainers=WebAdsContainers[2]
+    except:
+        pass
     context={'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'List':List}
     return render(request, 'index.html',context)
 @login_required(login_url='login')
