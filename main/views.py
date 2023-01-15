@@ -30,7 +30,7 @@ def index(request):
     List=[]
     remainder=(int(click)%2)
     if remainder>0:
-        lists=Websitelinks.objects.all()
+        lists=Websitelink.objects.all()
         if len(lists)>=3:
             for i in lists:
                 List.append(i.name)
