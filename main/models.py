@@ -3,16 +3,16 @@ from django.contrib.auth.models import User
 import datetime
 # Create your models here.
 class AdsLink(models.Model):
-	name =models.CharField(max_length=100)
+	name =models.CharField(max_length=1000)
 	def __str__(self):
 		return self.name
 
-class Websitelinks(models.Model):
-	name =models.CharField(max_length=100)
+class Websitelink(models.Model):
+	name =models.CharField(max_length=1000)
 	def __str__(self):
 		return self.name
 class WebAdsContainer(models.Model):
-	name =models.CharField(max_length=100)
+	name =models.TextField(max_length=1000000)
 	def __str__(self):
 		return self.name
 

@@ -4,7 +4,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import *
+from .models import *
 import json
+import random
 from adschlarship import settings
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
@@ -41,9 +43,17 @@ def index(request):
                 List.append(i.name)
         else:
             pass
-    
-    #List=json.dumps(List)
-    context={'click':click,'dollar':dollar,'List':List}
+    WebAdsContainers=[]
+    listes=WebAdsContainer.objects.all()
+    if len(listes)>=3:
+        for i in listes:
+            WebAdsContainers.append(i.name)
+    else:
+        pass
+    WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
+    WebAdsContainers=WebAdsContainers[2]
+
+    context={'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'List':List}
     return render(request, 'index.html',context)
 @login_required(login_url='login')
 def withdraw(request):
@@ -87,7 +97,17 @@ def withdraw(request):
                     else:
                         messages.error(request, f'Insufficient Balance')
                         return redirect('withdraw')
-    context={'click':click,'dollar':dollar,'form':form,'header':'Withdraw, Minimum $10','button':'Make Withdraw Request'}
+    WebAdsContainers=[]
+    listes=WebAdsContainer.objects.all()
+    if len(listes)>=3:
+        for i in listes:
+            WebAdsContainers.append(i.name)
+    else:
+        pass
+    WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
+    WebAdsContainers=WebAdsContainers[2]
+    #List=json.dumps(List)
+    context={'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'header':'Withdraw, Minimum $10','button':'Make Withdraw Request'}
     return render(request, 'form.html',context)
 
 
@@ -120,7 +140,17 @@ def signin(request):
             context={}
             return render(request,'form1.html',context)
     form=LoginForm()
-    context={'click':click,'dollar':dollar,'form':form,'button':'LogIn'}
+    WebAdsContainers=[]
+    listes=WebAdsContainer.objects.all()
+    if len(listes)>=3:
+        for i in listes:
+            WebAdsContainers.append(i.name)
+    else:
+        pass
+    WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
+    WebAdsContainers=WebAdsContainers[2]
+    #List=json.dumps(List)
+    context={'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'button':'LogIn'}
     return render(request,'form1.html',context)
 
 def signup(response):
@@ -163,7 +193,17 @@ def signup(response):
             messages.success(response, f'Successfully Registered,Please log into your Account to Make Orders')
             return redirect('login')
     form=RegistrationForm()
-    context={'click':click,'dollar':dollar,'form':form,'button':'SignUp'}
+    WebAdsContainers=[]
+    listes=WebAdsContainer.objects.all()
+    if len(listes)>=3:
+        for i in listes:
+            WebAdsContainers.append(i.name)
+    else:
+        pass
+    WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
+    WebAdsContainers=WebAdsContainers[2]
+    #List=json.dumps(List)
+    context={'click':click,'WebAdsContainers':WebAdsContainers,'dollar':dollar,'form':form,'button':'SignUp'}
     return render(response,'form.html',context)
 
 
@@ -181,7 +221,17 @@ def claim(request):
         click=int(0)
     request.session['click'] =click
     clicks=ReferralBonu.objects.filter(person=request.user)
-    context={'click':click,'clicks':clicks,}
+    WebAdsContainers=[]
+    listes=WebAdsContainer.objects.all()
+    if len(listes)>=3:
+        for i in listes:
+            WebAdsContainers.append(i.name)
+    else:
+        pass
+    WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
+    WebAdsContainers=WebAdsContainers[2]
+    #List=json.dumps(List)
+    context={'WebAdsContainers':WebAdsContainers,'click':click,'clicks':clicks,}
     return render(request,'claim.html',context)
 
 @login_required(login_url='login')
