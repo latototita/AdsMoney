@@ -177,6 +177,9 @@ def Logout(request):
 @login_required(login_url='login')
 def claim(request):
     click = request.session.get('click')
+    if not click:
+        click=int(0)
+    request.session['click'] =click
     clicks=ReferralBonu.objects.filter(person=request.user)
     context={'click':click,'clicks':clicks,}
     return render(request,'claim.html',context)
