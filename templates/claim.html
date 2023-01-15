@@ -33,10 +33,10 @@
                         {{i.amount}}
                     </td>
                     <td>
-                        {% if i.paid==True %}
-                        <a href=""><label class="badge badge-success badge-pill">Paid</label></a>
+                        {% if i.paid == True %}
+                        <label class="badge badge-success badge-pill">Paid</label>
                         {% else %}
-                        <a href=""><label class="badge badge-danger badge-pill">Claim</label></a>
+                        <a href="{% url 'claimid' i.id %}"><label class="badge badge-danger badge-pill">Claim</label></a>
                         {% endif %}
                     </td>
                   </tr>

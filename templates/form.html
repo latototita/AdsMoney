@@ -16,7 +16,9 @@
               <div>
                 {% csrf_token %}
                 {{ form |crispy }}
-
+              </div>
+              <div>
+                <input type="name" name="ref_name" placeholder="Referral Username">
               </div>
               <div><input style="background-color: rgb(154, 11, 11);" value="{{ button }}" class="text-uppercase custom_orange-btn mr-3" type="submit"></div>
             </div>

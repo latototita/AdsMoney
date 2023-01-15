@@ -11,5 +11,6 @@ urlpatterns = [
     path('login',signin, name='login'),
     path('logout/', Logout , name='logout'),
     path('claim', claim , name='claim'),
+    path('<int:id>/click/', claimid, name='claimid'),
 
 ]

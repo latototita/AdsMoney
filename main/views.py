@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import *
 import json
+from adschlarship import settings
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 def index(request):
@@ -25,12 +26,22 @@ def index(request):
     else:
         dollar=((int(click)*3)/1000)
     List=[]
-    lists=AdsLink.objects.all()
-    if len(lists)>=3:
-        for i in lists:
-            List.append(i.name)
+    remainder=(int(click)%2)
+    if remainder>0:
+        lists=Websitelinks.objects.all()
+        if len(lists)>=3:
+            for i in lists:
+                List.append(i.name)
+        else:
+            pass
     else:
-        pass
+        lists=AdsLink.objects.all()
+        if len(lists)>=3:
+            for i in lists:
+                List.append(i.name)
+        else:
+            pass
+    
     #List=json.dumps(List)
     context={'click':click,'dollar':dollar,'List':List}
     return render(request, 'index.html',context)
@@ -138,11 +149,11 @@ def signup(response):
             except:
                 referral_code=None
             if referral_code:
-                send_mail(subject,
+                send_mail('AdsMoney Referral',
                     f'{username} Just Joined Using You as a Referral. \n Remember to claim your money. \n And refer more.',
                     settings.EMAIL_HOST_USER,
                     [f'{referral_code.email}'],
-                    fail_silently = False,
+                    fail_silently = True,
                     )
                 referreds=Referred(personwhorefferred=referral_code,personrefferred=username)
                 referralbonus=ReferralBonu(person=referral_code,amount=30)
@@ -165,13 +176,21 @@ def Logout(request):
     return redirect('index')
 @login_required(login_url='login')
 def claim(request):
-    claim=request.POST.get('claim')
     click = request.session.get('click')
     clicks=ReferralBonu.objects.filter(person=request.user)
-    if request.method=="POST":
-        click=int(claim)+int(click)
-        request.session['click'] =click
-        messages.success(request, 'You have Signed Out Successfully')
-        return redirect('claim')
     context={'click':click,'clicks':clicks,}
     return render(request,'claim.html',context)
+
+@login_required(login_url='login')
+def claimid(request, id):
+    click = request.session.get('click')
+    if not click:
+        click=int(0)
+    clicks=ReferralBonu.objects.get(id=id)
+
+    click=int(clicks.amount)+int(click)
+    request.session['click'] =click
+    messages.success(request, 'Clicks CLaimed Successfully.')
+    clicks.paid=True
+    clicks.save()
+    return redirect('claim')
