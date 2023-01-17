@@ -28,21 +28,12 @@ def index(request):
     else:
         dollar=((int(click)*3)/1000)
     List=[]
-    remainder=(int(click)%2)
-    if remainder>0:
-        lists=Websitelink.objects.all()
-        if len(lists)>=3:
-            for i in lists:
-                List.append(i.name)
-        else:
-            pass
-    else:
-        lists=AdsLink.objects.all()
-        if len(lists)>=3:
-            for i in lists:
-                List.append(i.name)
-        else:
-            pass
+    lists=AdsLink.objects.all()
+    if len(lists)>=3:
+         for i in lists:
+             List.append(i.name)
+     else:
+         pass
     WebAdsContainers=[]
     listes=WebAdsContainer.objects.all()
     if len(listes)>=3:
