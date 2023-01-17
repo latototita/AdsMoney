@@ -148,7 +148,7 @@ EMAIL_PORT=587
 EMAIL_USE_TLS=True
 
 CSP_DEFAULT_SRC=("'self'",'*') 
-CSP_FRAME_ANCESTORS=("'self'",'example.com')
+CSP_FRAME_ANCESTORS=("'self'",'http://localhost:8000/')
 
 
 EMAIL_HOST_USER='pearlmartbusinesses@yahoo.com'
