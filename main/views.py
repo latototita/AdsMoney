@@ -181,18 +181,21 @@ def signup(response):
             except:
                 referral_code=None
             if referral_code:
-                send_mail('AdsMoney Referral',
+                '''send_mail('AdsMoney Referral',
                     f'{username} Just Joined Using You as a Referral. \n Remember to claim your money. \n And refer more.',
                     settings.EMAIL_HOST_USER,
                     [f'{referral_code.email}'],
                     fail_silently = True,
-                    )
+                    )'''
                 referreds=Referred(personwhorefferred=referral_code,personrefferred=username)
                 referralbonus=ReferralBonu(person=referral_code,amount=30)
                 referreds.save()
                 referralbonus.save()
             form.save()
-            messages.success(response, f'Successfully Registered,Please log into your Account to Make Orders')
+            messages.success(response, f'Successfully Registered,Please log into your Account and Start Earning')
+            return redirect('login')
+        else:
+            messages.success(response, f'Invalid Form, Contact Admin for Assitance')
             return redirect('login')
     form=RegistrationForm()
     WebAdsContainers=[]

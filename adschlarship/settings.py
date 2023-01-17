@@ -10,12 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import dotenv
-import dj_database_url
-
 import os
-
 import django_heroku
-
 from pathlib import Path
 dotenv.load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,10 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-(pva#(6^ph)j9hz4w*+=h)_##$%o#ql44bdqu+khtlo++g^vp!'
 
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['adsmoneyugx.herokuapp.com','*']
+ALLOWED_HOSTS = ['adsmoney.herokuapp.com','*']
 
 
 # Application definition
@@ -48,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -78,6 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'adschlarship.wsgi.application'
 
+import dj_database_url
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -89,7 +90,8 @@ DATABASES = {
     }
 }
 
-
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -131,10 +133,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-STATIC_ROOT=os.path.join(BASE_DIR ,'staticfiles')
 
+STATIC_ROOT=os.path.join(BASE_DIR ,'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 #  Add configuration for static files storage using whitenoise
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
@@ -148,5 +153,10 @@ EMAIL_HOST_USER='pearlmartbusinesses@yahoo.com'
 EMAIL_HOST_PASSWORD='jlxmlemwkciomuea'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #STMP configuration
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+#STMP configuration
+
+
 django_heroku.settings(locals())
 

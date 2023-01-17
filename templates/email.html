@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block body %}
+
+  <!-- contact section -->
+  <section class="contact_section layout_padding " style=" background-image: url('static/images/logo1.png');">
+    <div class="container">
+      <h2 class="font-weight-bold">
+        Email Sent
+      </h2>
+      <div class="row">
+        <div class="col-md-8 mr-auto">
+           <p>We've emailed you instructions for setting your password,<br> if an account exists with the email you entered. You <br>should receive them shortly.
+
+            If you don't receive an email, please make sure you've<br> entered the address you registered with, and check your <br>spam folder.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+
+
+
+
+
+  {% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block body %}
+
+  <!-- contact section -->
+  <section class="contact_section layout_padding " style=" background-image: url('static/images/logo1.png');">
+    <div class="container">
+      <h2 class="font-weight-bold">
+        Password Reset Successfully
+      </h2>
+      <div class="row">
+        <div class="col-md-8 mr-auto">
+            
+                                <p >
+                                	Your New Password was reset succefully<br>
+                                	Kindly login to continue Earning from Ads<br>
+                                 <a href="/signin" class="text-uppercase custom_orange-btn mr-3">LogIn</a>
+                                </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+
+
+
+
+
+  {% endblock %}
