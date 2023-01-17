@@ -30,10 +30,10 @@ def index(request):
     List=[]
     lists=AdsLink.objects.all()
     if len(lists)>=3:
-         for i in lists:
-             List.append(i.name)
-     else:
-         pass
+        for i in lists:
+            List.append(i.name)
+    else:
+        pass
     WebAdsContainers=[]
     listes=WebAdsContainer.objects.all()
     if len(listes)>=3:
