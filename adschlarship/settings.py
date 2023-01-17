@@ -146,9 +146,11 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.mail.yahoo.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
-
+''''
 CSP_DEFAULT_SRC=("'self'",'*') 
 CSP_FRAME_ANCESTORS=("'self'",'http://localhost:8000/')
+'''
+X_FRAME_OPTIONS = 'ALLOW-FROM https://adsmoneyugx.herokuapp.com'
 
 
 EMAIL_HOST_USER='pearlmartbusinesses@yahoo.com'
