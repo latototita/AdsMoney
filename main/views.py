@@ -166,16 +166,6 @@ def signup(response):
     if response.method=="POST":
         form=RegistrationForm(response.POST)
         if form.is_valid():
-            email=form.cleaned_data['email']
-            username=form.cleaned_data['username']
-            if User.objects.filter(email=email):
-                print('usernam')
-                messages.success(response, f'Email already in use, Please use a different Email')
-                return redirect('signup')
-            if User.objects.filter(username=username):
-
-                messages.success(response, f'Username already in use, Please use a different Username')
-                return redirect('signup')
             try:
                 referral_code=User.objects.get(username=ref_name)
             except:
