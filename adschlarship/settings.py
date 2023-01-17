@@ -147,7 +147,7 @@ EMAIL_HOST='smtp.mail.yahoo.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
 
-CSP_DEFAULT_SRC=("'self'",'*')
+CSP_DEFAULT_SRC=("'self'",'*') 
 CSP_FRAME_ANCESTORS=("'self'",'example.com')
 
 
