@@ -52,6 +52,7 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="https://chat.whatsapp.com/BVRekOdoS3z2GmsQvl8Vxm">WhatsApp</a>
                 </li>
@@ -64,7 +65,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/claim">Bonuses</a>
                 </li>
-                {% if user.is_authenticated %} 
+                 
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">LogOut</a>
                 </li>
