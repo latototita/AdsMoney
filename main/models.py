@@ -65,19 +65,18 @@ class Header(models.Model):
 	des =models.TextField(max_length=1000000)
 	button =models.CharField(max_length=1000)
 	def __str__(self):
-		return self.name
+		return self.title
 
 class Body(models.Model):
 	title =models.CharField(max_length=1000)
 	des =models.TextField(max_length=1000000)
 	button =models.CharField(max_length=1000)
 	def __str__(self):
-		return self.name
-
+		return self.title
 class Footer(models.Model):
 	title =models.CharField(max_length=1000)
 	des =models.TextField(max_length=1000000)
 	button =models.CharField(max_length=1000)
 	image=CloudinaryField('image')
 	def __str__(self):
-		return self.name
+		return self.title
