@@ -149,7 +149,7 @@
 <section class=" slider_section position-relative">
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-      {% for i in head %}
+      {% for i in headers %}
       <div class="carousel-item active">
         <div class="slider_item-box">
           <div class="slider_item-container">
@@ -281,7 +281,7 @@
     </p>
     <div class=" layout_padding2">
       <div class="card-deck">
-        {% for i in head %}
+        {% for i in body %}
         <div class="card">
           <img class="card-img-top" src="{% static 'images/card-item-1.png' %}" alt="Card image cap" />
           <div class="card-body">
@@ -396,7 +396,7 @@
     <p class="custom_heading-text">
       We Offer a rang of Services. Just for You. Below are the Services that Comw together With AdsMoney.
     </p>
-    {% for i in head %}
+    {% for i in footer %}
 
     <div class="row layout_padding2 ">
       <div class="col-md-8">

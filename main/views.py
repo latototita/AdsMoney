@@ -46,7 +46,10 @@ def index(request):
         WebAdsContainers=WebAdsContainers[2]
     except:
         pass
-    context={'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'List':List}
+    headers=Header.objects.all()
+    body=Body.objects.all()
+    footer=Footer.objects.all()
+    context={'footer':footer,'body':body,'headers':headers,'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'List':List}
     return render(request, 'index.html',context)
 @login_required(login_url='login')
 def withdraw(request):
@@ -100,7 +103,10 @@ def withdraw(request):
     WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
     WebAdsContainers=WebAdsContainers[2]
     #List=json.dumps(List)
-    context={'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'header':'Withdraw, Minimum $10','button':'Make Withdraw Request'}
+    headers=Header.objects.all()
+    body=Body.objects.all()
+    footer=Footer.objects.all()
+    context={'footer':footer,'body':body,'headers':headers,'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'header':'Withdraw, Minimum $10','button':'Make Withdraw Request'}
     return render(request, 'form.html',context)
 
 
@@ -130,8 +136,7 @@ def signin(request):
         else:
             print('else')
             messages.success(request, 'Username or Password Incorrect!')
-            context={}
-            return render(request,'form1.html',context)
+            return redirect('signin')
     form=LoginForm()
     WebAdsContainers=[]
     listes=WebAdsContainer.objects.all()
@@ -143,7 +148,10 @@ def signin(request):
     WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
     WebAdsContainers=WebAdsContainers[2]
     #List=json.dumps(List)
-    context={'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'button':'LogIn'}
+    headers=Header.objects.all()
+    body=Body.objects.all()
+    footer=Footer.objects.all()
+    context={'footer':footer,'body':body,'headers':headers,'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'button':'LogIn'}
     return render(request,'form1.html',context)
 
 def signup(response):
@@ -189,7 +197,10 @@ def signup(response):
     WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
     WebAdsContainers=WebAdsContainers[2]
     #List=json.dumps(List)
-    context={'click':click,'WebAdsContainers':WebAdsContainers,'dollar':dollar,'form':form,'button':'SignUp'}
+    headers=Header.objects.all()
+    body=Body.objects.all()
+    footer=Footer.objects.all()
+    context={'footer':footer,'body':body,'headers':headers,'click':click,'WebAdsContainers':WebAdsContainers,'dollar':dollar,'form':form,'button':'SignUp'}
     return render(response,'form.html',context)
 
 
@@ -217,7 +228,10 @@ def claim(request):
     WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
     WebAdsContainers=WebAdsContainers[2]
     #List=json.dumps(List)
-    context={'WebAdsContainers':WebAdsContainers,'click':click,'clicks':clicks,}
+    headers=Header.objects.all()
+    body=Body.objects.all()
+    footer=Footer.objects.all()
+    context={'footer':footer,'body':body,'headers':headers,'WebAdsContainers':WebAdsContainers,'click':click,'clicks':clicks,}
     return render(request,'claim.html',context)
 
 @login_required(login_url='login')
