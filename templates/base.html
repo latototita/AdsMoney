@@ -64,7 +64,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/claim">Bonuses</a>
                 </li>
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated %} 
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">LogOut</a>
                 </li>
@@ -92,6 +92,7 @@
     {% block body %}
     {% endblock %}
     {{ WebAdsContainers }}
+    {% if user.is_authenticated %}
     <section class="service_section layout_padding ">
       <div class="container">
         <h2 class="custom_heading">Our Other Websites 1</h2>
@@ -132,7 +133,8 @@
           </div>
         </div>
       </div>
-    </section>  
+    </section>
+    {% endif %}
 <style>
    /* Style the buttons that are used to open and close the accordion panel */
 .accordion {

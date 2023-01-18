@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 import dotenv
 import os
 import django_heroku
@@ -22,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(pva#(6^ph)j9hz4w*+=h)_##$%o#ql44bdqu+khtlo++g^vp!'
+SECRET_KEY =os.environ.get('SECRET_KEY')
 
 '''
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -43,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'cloudinary',
     'crispy_forms',
 ]
 
@@ -160,7 +164,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #STMP configuration
-
+cloudinary.config( 
+  cloud_name =os.environ.get('cloud_name'),
+  api_key = os.environ.get('api_key'),
+  api_secret = os.environ.get('api_secret'),
+)
 
 django_heroku.settings(locals())
 

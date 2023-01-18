@@ -3,6 +3,7 @@ django_heroku
 whitenoise
 python-dotenv==0.15.0
 gunicorn
+cloudinary
 Django==4
 dj-database-url
 psycopg2

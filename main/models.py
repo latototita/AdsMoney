@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from cloudinary.models import CloudinaryField
 # Create your models here.
 class AdsLink(models.Model):
 	name =models.CharField(max_length=1000)
@@ -55,3 +56,28 @@ class ReferralBonu(models.Model):
 
 	class Meta:
 		ordering = ('-date_paid', )
+
+
+
+
+class Header(models.Model):
+	title =models.CharField(max_length=1000)
+	des =models.TextField(max_length=1000000)
+	button =models.CharField(max_length=1000)
+	def __str__(self):
+		return self.name
+
+class Body(models.Model):
+	title =models.CharField(max_length=1000)
+	des =models.TextField(max_length=1000000)
+	button =models.CharField(max_length=1000)
+	def __str__(self):
+		return self.name
+
+class Footer(models.Model):
+	title =models.CharField(max_length=1000)
+	des =models.TextField(max_length=1000000)
+	button =models.CharField(max_length=1000)
+	image=CloudinaryField('image')
+	def __str__(self):
+		return self.name
