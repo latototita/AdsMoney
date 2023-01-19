@@ -63,7 +63,5 @@ class Clicks(models.Model):
 	name=models.ForeignKey(User,
                                 on_delete=models.CASCADE)
 	number =models.IntegerField()
-	def __str__(self):
-		return self.name
 
 
