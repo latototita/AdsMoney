@@ -203,7 +203,7 @@ def signup(response):
                     [f'{referral_code.email}'],
                     fail_silently = True,
                     )'''
-                referreds=Referred(personwhorefferred=referral_code,personrefferred=request.user.username)
+                referreds=Referred(personwhorefferred=referral_code,personrefferred=username)
                 referralbonus=ReferralBonu(person=referral_code,amount=30)
                 referreds.save()
                 referralbonus.save()
