@@ -190,6 +190,8 @@ def signup(response):
     if response.method=="POST":
         form=RegistrationForm(response.POST)
         if form.is_valid():
+            email=form.cleaned_data['email']
+            username=form.cleaned_data['username']
             try:
                 referral_code=User.objects.get(username=ref_name)
             except:
@@ -201,7 +203,7 @@ def signup(response):
                     [f'{referral_code.email}'],
                     fail_silently = True,
                     )'''
-                referreds=Referred(personwhorefferred=referral_code,personrefferred=username)
+                referreds=Referred(personwhorefferred=referral_code,personrefferred=request.user.username)
                 referralbonus=ReferralBonu(person=referral_code,amount=30)
                 referreds.save()
                 referralbonus.save()
