@@ -11,22 +11,42 @@ from adschlarship import settings
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 def index(request):
-    click = request.session.get('click')
-    print(click)
+    clickld = request.session.get('click')
+    try:
+        user=Clicks.objects.get(name=request.user)
+    except:
+        user=None
     if request.method =='POST':
-        if not click:
-            request.session['click'] = 1
+        if request.user.is_authenticated:
+
+            try:
+                user=Clicks.objects.get(name=request.user)
+            except:
+                user=None
+            if user is not None:
+                user.number=user.number+1
+                user.save()
+            else:
+                Nuser=Clicks(name=request.user,number=1)
+                Nuser.save()
+            if not clickld:
+                pass
+            else:
+                user=Clicks.objects.get(name=request.user)
+                user.number=int(user.number)+int(clickldint)
+                user.save()
+                request.session['click'] = 0
+                print('Laban')
+            return redirect('index')
         else:
-            click=int(click)+1
-            request.session['click'] =click
-            click = request.session.get('click')
-            
-        return redirect('index')
-    if click is None:
+            messages.error(request, f'Please LogIn, To keep your clicks safe')
+            return redirect('index')
+    if user is not None:
+        dollar=((int(user.number)*3)/1000)
+        click=user.number  
+    else:
         dollar=0
         click=0
-    else:
-        dollar=((int(click)*3)/1000)
     List=[]
     lists=AdsLink.objects.all()
     if len(lists)>=3:
@@ -52,14 +72,17 @@ def index(request):
 @login_required(login_url='login')
 def withdraw(request):
     form=WithdrawForm()
-    click = request.session.get('click')
-    if click is None:
+    try:
+        user=Clicks.objects.get(name=request.user)
+    except:
+        user=None
+    if user is not None:
+        dollar=((int(user.number)*3)/1000)
+        click=user.number  
+    else:
         dollar=0
         click=0
-    else:
-        dollar=((int(click)*3)/1000)
     if request.method =='POST':
-        click = request.session.get('click')
         form=WithdrawForm(request.POST)
         if form.is_valid():
             if not click:
@@ -110,12 +133,16 @@ def withdraw(request):
 
     # Create your views here.
 def signin(request):
-    click = request.session.get('click')
-    if click is None:
+    try:
+        user=Clicks.objects.get(name=request.user)
+    except:
+        user=None
+    if user is not None:
+        dollar=((int(user.number)*3)/1000)
+        click=user.number  
+    else:
         dollar=0
         click=0
-    else:
-        dollar=((int(click)*3)/1000)
     if request.method=='POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
@@ -149,12 +176,16 @@ def signin(request):
     return render(request,'form1.html',context)
 
 def signup(response):
-    click = response.session.get('click')
-    if click is None:
+    try:
+        user=Clicks.objects.get(name=request.user)
+    except:
+        user=None
+    if user is not None:
+        dollar=((int(user.number)*3)/1000)
+        click=user.number  
+    else:
         dollar=0
         click=0
-    else:
-        dollar=((int(click)*3)/1000)
     ref_name=response.POST.get('ref_name')
     if response.method=="POST":
         form=RegistrationForm(response.POST)
@@ -198,17 +229,21 @@ def signup(response):
 
 @login_required(login_url='login')
 def Logout(request):
-    click = request.session.get('click')
     logout(request)
-    request.session['click'] =click
     messages.success(request, 'You have Signed Out Successfully')
     return redirect('index')
 @login_required(login_url='login')
 def claim(request):
-    click = request.session.get('click')
-    if not click:
-        click=int(0)
-    request.session['click'] =click
+    try:
+        user=Clicks.objects.get(name=request.user)
+    except:
+        user=None
+    if user is not None:
+        dollar=((int(user.number)*3)/1000)
+        click=user.number  
+    else:
+        dollar=0
+        click=0
     clicks=ReferralBonu.objects.filter(person=request.user)
     WebAdsContainers=[]
     listes=WebAdsContainer.objects.all()
@@ -226,13 +261,24 @@ def claim(request):
 
 @login_required(login_url='login')
 def claimid(request, id):
-    click = request.session.get('click')
-    if not click:
-        click=int(0)
+    try:
+        user=Clicks.objects.get(name=request.user)
+    except:
+        user=None
+    if user is not None:
+        dollar=((int(user.number)*3)/1000)
+        click=user.number  
+    else:
+        dollar=0
+        click=0
     clicks=ReferralBonu.objects.get(id=id)
-
-    click=int(clicks.amount)+int(click)
-    request.session['click'] =click
+    if user is not None:
+        user.number=int(clicks.amount)+int(click)
+        user.save()
+    else:
+        number=int(clicks.amount)+int(click)
+        Nuser=Clicks(name=request.user,number=number)
+        Nuser.save()
     messages.success(request, 'Clicks CLaimed Successfully.')
     clicks.paid=True
     clicks.save()

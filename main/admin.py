@@ -7,4 +7,4 @@ admin.site.register(Withdraw)
 admin.site.register(Referred)
 admin.site.register(ReferralBonu)
 admin.site.register(WebAdsContainer)
-
+admin.site.register(Clicks)
