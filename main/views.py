@@ -47,28 +47,18 @@ def index(request):
     else:
         dollar=0
         click=0
+    Lists=[]
     List=[]
+
     lists=AdsLink.objects.all()
     if len(lists)>=3:
         for i in lists:
             List.append(i.name)
     else:
         pass
-    WebAdsContainers=[]
-    listes=WebAdsContainer.objects.all()
-    adslinks=AdsLink.objects.all()
-    if len(listes)>=3:
-        for i in listes:
-            WebAdsContainers.append(i.name)
-    else:
-        pass
-    WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
-    try:
-        WebAdsContainers=WebAdsContainers[2]
-    except:
-        pass
-
-    context={'adslinks':adslinks,'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'List':List}
+    Lists=random.sample(List, len(List))
+    Lists=Lists[:3]
+    context={'Lists':Lists,'List':List,'click':click,'dollar':dollar}
     return render(request, 'index.html',context)
 @login_required(login_url='login')
 def withdraw(request):
@@ -115,19 +105,21 @@ def withdraw(request):
                     else:
                         messages.error(request, f'Insufficient Balance')
                         return redirect('withdraw')
-    WebAdsContainers=[]
-    listes=WebAdsContainer.objects.all()
-    adslinks=AdsLink.objects.all()
-    if len(listes)>=3:
-        for i in listes:
-            WebAdsContainers.append(i.name)
+
+    
+    
+    #List=json.dumps(List)
+    Lists=[]
+    List=[]
+    lists=AdsLink.objects.all()
+    if len(lists)>=3:
+        for i in lists:
+            List.append(i.name)
     else:
         pass
-    WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
-    WebAdsContainers=WebAdsContainers[2]
-    #List=json.dumps(List)
-
-    context={'adslinks':adslinks,'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'header':'Withdraw, Minimum $10','button':'Make Withdraw Request'}
+    Lists=random.sample(List, len(List))
+    Lists=Lists[:3]
+    context={'Lists':Lists,'click':click,'dollar':dollar,'form':form,'header':'Withdraw, Minimum $10','button':'Make Withdraw Request'}
     return render(request, 'form.html',context)
 
 
@@ -164,17 +156,11 @@ def signin(request):
             return redirect('login')
     form=LoginForm()
     listes=WebAdsContainer.objects.all()
-    adslinks=AdsLink.objects.all()
-    if len(listes)>=3:
-        for i in listes:
-            WebAdsContainers.append(i.name)
-    else:
-        pass
-    WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
-    WebAdsContainers=WebAdsContainers[2]
+    
+    
     #List=json.dumps(List)
 
-    context={'adslinks':adslinks,'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'button':'LogIn'}
+    context={'click':click,'dollar':dollar,'form':form,'button':'LogIn'}
     return render(request,'form1.html',context)
 
 def signup(response):
@@ -216,19 +202,12 @@ def signup(response):
             messages.success(response, f'Invalid Form, Contact Admin for Assitance')
             return redirect('login')
     form=RegistrationForm()
-    WebAdsContainers=[]
-    listes=WebAdsContainer.objects.all()
-    adslinks=AdsLink.objects.all()
-    if len(listes)>=3:
-        for i in listes:
-            WebAdsContainers.append(i.name)
-    else:
-        pass
-    WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
-    WebAdsContainers=WebAdsContainers[2]
+
+    
+    
     #List=json.dumps(List)
 
-    context={'click':click,'adslinks':adslinks,'WebAdsContainers':WebAdsContainers,'dollar':dollar,'form':form,'button':'SignUp'}
+    context={'click':click,'dollar':dollar,'form':form,'button':'SignUp'}
     return render(response,'form.html',context)
 
 
@@ -250,19 +229,18 @@ def claim(request):
         dollar=0
         click=0
     clicks=ReferralBonu.objects.filter(person=request.user)
-    WebAdsContainers=[]
-    listes=WebAdsContainer.objects.all()
-    adslinks=AdsLink.objects.all()
-    if len(listes)>=3:
-        for i in listes:
-            WebAdsContainers.append(i.name)
+    #List=json.dumps(List)
+    Lists=[]
+    List=[]
+    lists=AdsLink.objects.all()
+    if len(lists)>=3:
+        for i in lists:
+            List.append(i.name)
     else:
         pass
-    WebAdsContainers=random.sample(WebAdsContainers, len(WebAdsContainers))
-    WebAdsContainers=WebAdsContainers[2]
-    #List=json.dumps(List)
-
-    context={'adslinks':adslinks,'WebAdsContainers':WebAdsContainers,'click':click,'clicks':clicks,}
+    Lists=random.sample(List, len(List))
+    Lists=Lists[:3]
+    context={'Lists':Lists,'click':click,'clicks':clicks,}
     return render(request,'claim.html',context)
 
 @login_required(login_url='login')
@@ -293,6 +271,16 @@ def claimid(request, id):
 
 @login_required(login_url='login')
 def kyc(request):
+    Lists=[]
+    List=[]
+    lists=AdsLink.objects.all()
+    if len(lists)>=3:
+        for i in lists:
+            List.append(i.name)
+    else:
+        pass
+    Lists=random.sample(List, len(List))
+    Lists=Lists[:3]
     form=KYCForm()
     try:
         user=Clicks.objects.get(name=request.user)
@@ -311,6 +299,6 @@ def kyc(request):
             feed_back.save()
             messages.success(request, 'KYC Submission Complete')
             return redirect('index')
-    context={'click':click,'dollar':dollar,'form':form,'header':'KYC FORM','button':'SUBMIT'}
+    context={'Lists':Lists,'click':click,'dollar':dollar,'form':form,'header':'KYC FORM','button':'SUBMIT'}
     return render(request, 'form2.html',context)
 
