@@ -165,6 +165,7 @@ def signin(request):
     form=LoginForm()
     listes=WebAdsContainer.objects.all()
     adslinks=AdsLink.objects.all()
+    WebAdsContainers=[]
     if len(listes)>=3:
         for i in listes:
             WebAdsContainers.append(i.name)
