@@ -64,4 +64,11 @@ class Clicks(models.Model):
                                 on_delete=models.CASCADE)
 	number =models.IntegerField()
 
+class KYC(models.Model):
+	name=models.ForeignKey(User,
+                                on_delete=models.CASCADE)
+	nin= models.CharField(max_length=1000,default=0, unique=True)
+	front=CloudinaryField('image')
+	back=CloudinaryField('image')
+
 

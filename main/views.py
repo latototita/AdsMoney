@@ -56,6 +56,7 @@ def index(request):
         pass
     WebAdsContainers=[]
     listes=WebAdsContainer.objects.all()
+    adslinks=AdsLink.objects.all()
     if len(listes)>=3:
         for i in listes:
             WebAdsContainers.append(i.name)
@@ -67,7 +68,7 @@ def index(request):
     except:
         pass
 
-    context={'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'List':List}
+    context={'adslinks':adslinks,'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'List':List}
     return render(request, 'index.html',context)
 @login_required(login_url='login')
 def withdraw(request):
@@ -116,6 +117,7 @@ def withdraw(request):
                         return redirect('withdraw')
     WebAdsContainers=[]
     listes=WebAdsContainer.objects.all()
+    adslinks=AdsLink.objects.all()
     if len(listes)>=3:
         for i in listes:
             WebAdsContainers.append(i.name)
@@ -125,7 +127,7 @@ def withdraw(request):
     WebAdsContainers=WebAdsContainers[2]
     #List=json.dumps(List)
 
-    context={'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'header':'Withdraw, Minimum $10','button':'Make Withdraw Request'}
+    context={'adslinks':adslinks,'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'header':'Withdraw, Minimum $10','button':'Make Withdraw Request'}
     return render(request, 'form.html',context)
 
 
@@ -161,8 +163,8 @@ def signin(request):
             messages.success(request, 'Username or Password Incorrect!')
             return redirect('login')
     form=LoginForm()
-    WebAdsContainers=[]
     listes=WebAdsContainer.objects.all()
+    adslinks=AdsLink.objects.all()
     if len(listes)>=3:
         for i in listes:
             WebAdsContainers.append(i.name)
@@ -172,7 +174,7 @@ def signin(request):
     WebAdsContainers=WebAdsContainers[2]
     #List=json.dumps(List)
 
-    context={'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'button':'LogIn'}
+    context={'adslinks':adslinks,'WebAdsContainers':WebAdsContainers,'click':click,'dollar':dollar,'form':form,'button':'LogIn'}
     return render(request,'form1.html',context)
 
 def signup(response):
@@ -216,6 +218,7 @@ def signup(response):
     form=RegistrationForm()
     WebAdsContainers=[]
     listes=WebAdsContainer.objects.all()
+    adslinks=AdsLink.objects.all()
     if len(listes)>=3:
         for i in listes:
             WebAdsContainers.append(i.name)
@@ -225,7 +228,7 @@ def signup(response):
     WebAdsContainers=WebAdsContainers[2]
     #List=json.dumps(List)
 
-    context={'click':click,'WebAdsContainers':WebAdsContainers,'dollar':dollar,'form':form,'button':'SignUp'}
+    context={'click':click,'adslinks':adslinks,'WebAdsContainers':WebAdsContainers,'dollar':dollar,'form':form,'button':'SignUp'}
     return render(response,'form.html',context)
 
 
@@ -249,6 +252,7 @@ def claim(request):
     clicks=ReferralBonu.objects.filter(person=request.user)
     WebAdsContainers=[]
     listes=WebAdsContainer.objects.all()
+    adslinks=AdsLink.objects.all()
     if len(listes)>=3:
         for i in listes:
             WebAdsContainers.append(i.name)
@@ -258,7 +262,7 @@ def claim(request):
     WebAdsContainers=WebAdsContainers[2]
     #List=json.dumps(List)
 
-    context={'WebAdsContainers':WebAdsContainers,'click':click,'clicks':clicks,}
+    context={'adslinks':adslinks,'WebAdsContainers':WebAdsContainers,'click':click,'clicks':clicks,}
     return render(request,'claim.html',context)
 
 @login_required(login_url='login')
@@ -285,3 +289,28 @@ def claimid(request, id):
     clicks.paid=True
     clicks.save()
     return redirect('claim')
+
+
+@login_required(login_url='login')
+def kyc(request):
+    form=KYCForm()
+    try:
+        user=Clicks.objects.get(name=request.user)
+    except:
+        user=None
+    if user is not None:
+        dollar=((int(user.number)*3)/1000)
+        click=user.number  
+    else:
+        dollar=0
+        click=0
+    if request.method =='POST':
+        if form.is_valid():
+            feed_back=form.save(commit=False)
+            feed_back.name=request.user
+            feed_back.save()
+            messages.success(request, 'KYC Submission Complete')
+            return redirect('index')
+    context={'click':click,'dollar':dollar,'form':form,'header':'KYC FORM','button':'SUBMIT'}
+    return render(request, 'form2.html',context)
+

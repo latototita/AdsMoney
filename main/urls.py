@@ -11,6 +11,7 @@ urlpatterns = [
     path('login',signin, name='login'),
     path('logout/', Logout , name='logout'),
     path('claim', claim , name='claim'),
+    path('kyc', kyc , name='kyc'),
     path('<int:id>/click/', claimid, name='claimid'),
     path('reset_password/',auth_views.PasswordResetView.as_view(template_name='reset.html',
             success_url = '/reset_password_sent'),name="reset_password"),

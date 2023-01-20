@@ -31,3 +31,8 @@ class BaseForm(forms.ModelForm):
             if hasattr(bound_field, "field") and bound_field.field.required:
                 bound_field.field.widget.attrs["required"] = "required"
 
+class KYCForm(forms.ModelForm):
+    class Meta:
+        model=KYC
+        fields=['nin','front','back',]
+    nin= forms.CharField(label='Enter Unique NIN number',required=True)

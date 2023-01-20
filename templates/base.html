@@ -93,6 +93,21 @@
     {% block body %}
     {% endblock %}
     {{ WebAdsContainers }}
+    {% if user.is_authenticated %}
+    <section class="service_section layout_padding ">
+      <div class="container">
+        <div class=" layout_padding2">
+          <div class="card-deck">
+            {% for i in adslinks %}
+            <div class="card">
+              <iframe src="{{i.name}}"></iframe>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+  </section>
+  {% endif %}
     <script type='text/javascript' src='//diversecrashconcern.com/63/a1/f2/63a1f2942f975c6891c8d1cbcf62c1c9.js'></script>
 <script type='text/javascript' src='//diversecrashconcern.com/63/a1/f2/63a1f2942f975c6891c8d1cbcf62c1c9.js'></script>
 <script async="async" data-cfasync="false" src="//diversecrashconcern.com/bb9ec6fe27d16a409cfcc6615c58ad5d/invoke.js"></script>
