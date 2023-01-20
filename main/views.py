@@ -155,9 +155,7 @@ def signin(request):
             messages.success(request, 'Username or Password Incorrect!')
             return redirect('login')
     form=LoginForm()
-    listes=WebAdsContainer.objects.all()
-    
-    
+
     #List=json.dumps(List)
 
     context={'click':click,'dollar':dollar,'form':form,'button':'LogIn'}
